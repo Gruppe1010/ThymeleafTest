@@ -22,7 +22,13 @@
 			<!-- jeg vil gerne vise den info som brugeren giver mig-->
 			<div class="col">
 				<!-- Jeg skal give den en context -->
-				<p th:text="${firstCatFact.printList()}"></p> <!-- firstCatFact.getFactText() -->
+				<p th:each="catFact : ${catFactList}">
+					<span>Catfact number: </span>
+					<span th:text="${catFact.getID()}"></span>
+					<span>: </span>
+					<span th:text="${catFact.getFactText()}"></span>
+				</p>
+				<!-- tidligere: <p th:text="${firstCatFact.printList()}"></p> --><!-- firstCatFact.getFactText() -->
 			</div>
 		</div>
 	</div>

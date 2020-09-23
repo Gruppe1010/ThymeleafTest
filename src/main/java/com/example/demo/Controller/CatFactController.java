@@ -1,6 +1,5 @@
 package com.example.demo.Controller;
 import com.example.demo.models.CatFact;
-import com.example.demo.models.CatFactList;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model; // for at kunne bruge model som parameter i index-metoden
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,9 +12,12 @@ import java.util.List;
 @Controller
 public class CatFactController
 {
-    // List<CatFact> catFactList = new ArrayList<CatFact>();
-    CatFact catFactToDisplay = new CatFact("Vores test-CatFact");
-    CatFactList catFactList = new CatFactList();
+    List<CatFact> catFactList = new ArrayList<CatFact>();
+    int ID = 0;
+    
+    // HER - 2 linjer
+    //CatFact catFactToDisplay = new CatFact("Vores test-CatFact");
+    //CatFactList catFactList = new CatFactList();
     
     // Resources-mappen:
     /*
@@ -28,7 +30,7 @@ public class CatFactController
     {
         // den får et navn og et objekt som den skal inteagere med
         // Man bruger Model-objektet til at transportere data til viewet - altså til html-filen
-        catFactModel.addAttribute("firstCatFact", catFactList);
+        catFactModel.addAttribute("catFactList", catFactList);
         
         // INDSÆT FOR ENKELT CATFACT
         // catFactModel.addAttribute("firstCatFact", catFactToDisplay);
@@ -44,6 +46,7 @@ public class CatFactController
     @PostMapping("/postCatFact")
     public String postCatFact(WebRequest dataFromForm)
     {
+        ID++;
         /*
         // Vi laver nyt CatFact-object og sætter attributten til bruger-input + adder det til listen
         vi skal oprette et CatFact-objekt - vi skal sette attributten med det som brugeren inputter:
@@ -51,7 +54,7 @@ public class CatFactController
         // getParameter = getter det som brugeren har skrevet(måske?)
         // WebRequest - siger at det ikke er en request fra browseren (måske?????)
          */
-        catFactList.addCatFactToList(new CatFact(dataFromForm.getParameter("catfact")));
+        catFactList.add(new CatFact(ID ,dataFromForm.getParameter("catfact")));
         
         // INDSÆT FOR ENKELT CATFACT
         /*
