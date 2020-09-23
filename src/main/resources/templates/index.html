@@ -1,0 +1,30 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org"> <!--Fortæller at det er et extended html-dokument - extented fra thymeleaf? -->
+<head>
+  <title>Cat-fact POST</title>
+  <link href="/style.css" type="text/css" rel="stylesheet">
+	<!-- bootstraaaaap -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+
+</head>
+<body>
+	<div class="container">
+		<div class="row">
+			<div class="col">
+				<div id="form-container">
+					<form id="registration-form" action="/postCatFact" method="post"> <!-- her har vi en form - det er til denne at vi skal lave @PostMapping i Controlleren for at lave et endpoint -->
+						<label for="catfact">CatFact</label>
+						<input type="text" id="catfact" name="catfact"><br><br>
+						<input type="submit" value="Submit">
+					</form>
+				</div>
+			</div>
+			<!-- jeg vil gerne vise den info som brugeren giver mig-->
+			<div class="col">
+				<!-- Jeg skal give den en context -->
+				<p th:text="${firstCatFact.printList()}"></p> <!-- firstCatFact.getFactText() -->
+			</div>
+		</div>
+	</div>
+</body>
+</html>
